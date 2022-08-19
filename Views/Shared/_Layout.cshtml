@@ -1,0 +1,552 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - Assignment1</title>
+
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+
+  <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+
+
+  <link href="~/lib/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+  <link href="~/lib/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+
+
+  <link href="https://cdn.datatables.net/buttons/1.4.1/css/buttons.dataTables.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="~/lib/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+
+
+
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+
+  <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="~/lib/datatables/js/dataTables.bootstrap.js"></script>
+
+  <script src="~/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+
+  <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+
+  <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar  navbar-light bg-light">
+    <div class="row">
+      <div class="col-6">
+        <a class="navbar-brand" href="#" style="color: #241159; font-weight: bold"> KOMATSU | <span
+            style="color: #000;">PartsPortal</span></a>
+      </div>
+
+    </div>
+
+  </nav>
+  <div style="background-color: #fcba03; padding: 2px">
+
+  </div>
+  <div class="wrapper d-flex align-items-stretch">
+
+    <nav id="sidebar">
+      @* <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div> *@
+      <div class="">
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="#"><span class="fa fa-home mr-3"></span> Dashboard</a>
+            <span class="triangle-left float-end"></span>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-message mr-3"></span> Work Queues</a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-btn">
+              <span class="fa fa-dollar-sign mr-3"></span>
+              Price Review
+              <span class="float-right">
+                <i class="fa fa-angle-up mr-3 toggle-arrow"></i>
+              </span>
+
+            </a>
+            <div class="dropdown-container  pl-3" style="display: block;">
+              <a href="#">Price Review Inquiry</a>
+              <a href="#">Price Review Request</a>
+            </div>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Blog</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-suitcase mr-3"></span> Gallery</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-cogs mr-3"></span> Services</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contacts</a>
+          </li>
+        </ul>
+
+        @* <div class="mb-5 p-3">
+          <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+          <form action="#" class="subscribe-form">
+          <div class="form-group d-flex">
+          <div class="icon"><span class="icon-paper-plane"></span></div>
+          <input type="text" class="form-control" placeholder="Enter Email Address">
+          </div>
+          </form>
+          </div>
+
+          <div class="footer p-3">
+          <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;
+          <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+          is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+          target="_blank">Colorlib.com</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+          </div> *@
+
+      </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+      <main role="main" class="pb-3">
+        @RenderBody()
+      </main>
+    </div>
+  </div>
+
+
+  <footer class="border-top footer text-muted">
+    <div class="container">
+      &copy; 2022 - Assignment1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+  </footer>
+
+
+
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+
+
+<style>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+  }
+
+
+
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
+  a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  a:not([href]):not([tabindex]) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:not([href]):not([tabindex]):hover,
+  a:not([href]):not([tabindex]):focus {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:not([href]):not([tabindex]):focus {
+    outline: 0;
+  }
+
+
+
+  .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  a.text-primary:hover,
+  a.text-primary:focus {
+    color: #0056b3 !important;
+  }
+
+  .text-secondary {
+    color: #6c757d !important;
+  }
+
+  a.text-secondary:hover,
+  a.text-secondary:focus {
+    color: #494f54 !important;
+  }
+
+  .text-success {
+    color: #28a745 !important;
+  }
+
+  a.text-success:hover,
+  a.text-success:focus {
+    color: #19692c !important;
+  }
+
+  .text-info {
+    color: #17a2b8 !important;
+  }
+
+  a.text-info:hover,
+  a.text-info:focus {
+    color: #0f6674 !important;
+  }
+
+  .text-warning {
+    color: #ffc107 !important;
+  }
+
+  a.text-warning:hover,
+  a.text-warning:focus {
+    color: #ba8b00 !important;
+  }
+
+  .text-danger {
+    color: #dc3545 !important;
+  }
+
+  a.text-danger:hover,
+  a.text-danger:focus {
+    color: #a71d2a !important;
+  }
+
+  .text-light {
+    color: #f8f9fa !important;
+  }
+
+  a.text-light:hover,
+  a.text-light:focus {
+    color: #cbd3da !important;
+  }
+
+  .text-dark {
+    color: #343a40 !important;
+  }
+
+  a.text-dark:hover,
+  a.text-dark:focus {
+    color: #121416 !important;
+  }
+
+  .text-body {
+    color: #212529 !important;
+  }
+
+  .text-muted {
+    color: #6c757d !important;
+  }
+
+  .text-black-50 {
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .text-white-50 {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+  }
+
+  .text-decoration-none {
+    text-decoration: none !important;
+  }
+
+  .text-break {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .text-reset {
+    color: inherit !important;
+  }
+
+  .visible {
+    visibility: visible !important;
+  }
+
+  .invisible {
+    visibility: hidden !important;
+  }
+
+
+  body {
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fafafa;
+    color: gray;
+  }
+
+  a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    color: #6d5f94;
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  button {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+  }
+
+  button:hover,
+  button:focus {
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  .img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .wrapper {
+    width: 100%;
+  }
+
+  #sidebar {
+    min-width: 270px;
+    max-width: 270px;
+    background: #6d5f94;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  #sidebar .h6 {
+    color: #fff;
+  }
+
+  #sidebar.active {
+    margin-left: -270px;
+  }
+
+  #sidebar h1 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  #sidebar h1 .logo {
+    color: #fff;
+  }
+
+  #sidebar h1 .logo span {
+    font-size: 14px;
+    color: #44bef1;
+    display: block;
+  }
+
+  #sidebar ul.components {
+    padding: 0;
+  }
+
+  #sidebar ul li {
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  #sidebar ul li>ul {
+    margin-left: 10px;
+  }
+
+  #sidebar ul li>ul li {
+    font-size: 14px;
+  }
+
+  #sidebar ul li a {
+    margin-left: 1rem;
+    padding: 8px 0;
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+
+  }
+
+  #sidebar ul li a span {
+    color: #44bef1;
+  }
+
+  #sidebar ul li a:hover {
+    color: #fff;
+  }
+
+  #sidebar ul li.active>a {
+    background: transparent;
+    color: #fff;
+  }
+
+  #sidebar .custom-menu {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    margin-right: -20px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+
+  #sidebar .custom-menu .btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  #sidebar .custom-menu .btn i {
+    margin-right: -40px;
+    font-size: 14px;
+  }
+
+  #sidebar .custom-menu .btn.btn-primary {
+    background: transparent;
+    border-color: transparent;
+  }
+
+  #sidebar .custom-menu .btn.btn-primary:after {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background: #6d5f94;
+    border-radius: 10px;
+  }
+
+  #sidebar .custom-menu .btn.btn-primary:hover,
+  #sidebar .custom-menu .btn.btn-primary:focus {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+
+  a[data-toggle="collapse"] {
+    position: relative;
+  }
+
+  .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+
+
+  #content {
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .triangle-left {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-right: 20px solid white;
+    border-bottom: 12px solid transparent;
+  }
+</style>
+<script>
+  (function ($) {
+
+    "use strict";
+
+    var fullHeight = function () {
+
+      $('.js-fullheight').css('height', $(window).height());
+      $(window).resize(function () {
+        $('.js-fullheight').css('height', $(window).height());
+      });
+
+    };
+    fullHeight();
+
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+    });
+
+  })(jQuery);
+
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var toggleArrow = document.getElementsByClassName("toggle-arrow")
+  var i;
+
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+        toggleArrow[0].className = "fa fa-angle-down mr-3 toggle-arrow"
+        dropdownContent.style.display = "none";
+      } else {
+        toggleArrow[0].className = "fa fa-angle-up mr-3 toggle-arrow"
+        dropdownContent.style.display = "block";
+      }
+    });
+  }
+</script>

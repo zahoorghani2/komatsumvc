@@ -1,0 +1,354 @@
+﻿@model Assignment1.Models.Customer;
+
+
+
+<div class="homePage">
+
+    <div id="SearchForm" class="mb-4 border bg-gray">
+        <div class="searchResults p-2 mb-3" style="background:#241159; color: white; font-weight: bold">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <i class="fa-solid fa-search"></i>
+                    Search Criteria
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-angle-down fa-1x fa-pull-down fa-border"></i>
+                </div>
+            </div>
+        </div>
+        <form class="form m-2 " id="form">
+            <div class="row mb-1">
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <label for="reqNo">Request Number</label>
+                        <input type="text" class="form-control" id="reqNo">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="partNo">Part No</label>
+                        <input type="text" class="form-control" id="partNo">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="distributorcode">Distributor Code</label>
+                        <input type="text" class="form-control" id="distributorcode">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-1">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="branchcode">Branch Code</label>
+                        <input type="text" class="form-control" id="branchcode">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+
+                        <select class="form-select">
+                            <option selected></option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="reqdatefrom">Request Date <sub>From</sub></label>
+
+                        <div class="input-group date" id="reqdatefrom">
+                            <input type="text" class="form-control" id="date" />
+                            <span class="input-group-append">
+                                <span class="input-group-text  d-block">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-1">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="reqdateto">Request Date <sub>To</sub></label>
+                        <div class="input-group date" id="reqdateto">
+                            <input type="text" class="form-control" id="date" />
+                            <span class="input-group-append">
+                                <span class="input-group-text d-block">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="reqType">Request Type</label>
+                        <select class="form-select">
+                            <option selected></option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="competitorName">Competitor Name</label>
+                        <select class="form-select">
+                            <option selected></option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-1">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="kacpricing">KAC Pricing Consultant (Assignee)</label>
+                        <select class="form-select">
+                            <option selected></option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-end">
+                    <button type="button" onclick="retrieveData()" class="btn btn-outline-primary mt-2"> <i
+                            class="fa-solid fa-search"></i>
+                        Submit</button>
+                </div>
+
+            </div>
+
+
+
+
+        </form>
+    </div>
+
+
+    <div class="searchResults p-2" style="background:#241159; color: white; font-weight: bold">
+        <div class="d-flex justify-content-between">
+            <div>
+                <i class="fa-solid fa-calendar-days"></i>
+                Search Results
+            </div>
+
+            <div>
+                <i class="fa-solid fa-angle-down fa-1x fa-pull-down fa-border"></i>
+                <i class="fa fa-up-right-and-down-left-from-center fa-border"></i>
+            </div>
+        </div>
+    </div>
+    <div style="border : 1px solid #d3d3d3; padding: 10px;">
+        <div id="buttons"></div>
+        <table id="example" class="cell-border hover row-border stripe">
+
+            <thead>
+                <tr>
+                    <th>Request Number</th>
+                    <th>Port Number</th>
+                    <th>Port Description</th>
+                    <th>Request Type</th>
+                    <th>Distributor Code</th>
+                    <th>Branch Code</th>
+                    <th>Delear NetPrice</th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+
+</div>
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#reqdatefrom").datepicker();
+        $("#reqdateto").datepicker();
+        retrieveData();
+    });
+
+    function retrieveData() {
+        var reqNo = $("#reqNo").val();
+        var reqDateTo = $("#reqdateto").datepicker('getDate') != null ? $("#reqdateto").datepicker('getDate') : new Date();
+
+        $('#example').DataTable().clear().destroy();
+        var table = $("#example").DataTable({
+            pagingType: 'full_numbers',
+
+            "bInfo": false,
+            "ajax": {
+                "url": "/Customer/GetList",
+                "type": "POST",
+                "datatype": "json",
+                "contentType": "application/json",
+                "data": function (d) {
+                    d.RequestNumber = reqNo;
+                    d.RequestDateTo = reqDateTo;
+                    return JSON.stringify(d)
+                }
+
+            },
+            "oLanguage": {
+                "sSearch": "Filter",
+                "sLengthMenu": 'Records _MENU_',
+            },
+            "columns": [
+                { "data": "RequestNumber", },
+                { "data": "PortNumber" },
+                { "data": "PortDesc", },
+                { "data": "RequestType" },
+                { "data": "DistributorCode", },
+                { "data": "BranchCode" },
+                { "data": "DelearNetPrice", },
+            ]
+        });
+
+        var buttons = new $.fn.dataTable.Buttons(table, {
+            buttons: [
+                {
+                    text: '<i class="fa fa-bars"></i> Detail',
+                    className: "btn btn-sm btn-outline-primary",
+                    action: function (e, dt, node, config) {
+                        alert('Button activated');
+                    }
+                },
+
+                {
+                    text: '<i class="fa fa-xmark"></i> Cancel Request',
+                    className: "btn btn-sm btn-outline-primary",
+                    action: function (e, dt, node, config) {
+                        alert('Button activated');
+                    }
+                },
+
+                {
+                    extend: 'collection',
+                    text: '<i class="fa fa-download"></i> Download <i class="fa fa-angle-down"></i>',
+                    className: "btn btn-sm btn-outline-primary",
+
+
+                    buttons: [
+                        'excel',
+                        'csv'
+                    ]
+                }
+
+
+
+            ]
+        }).container().appendTo($('#buttons'));
+
+
+
+        $.fn.myFunction1 = function () {
+            $("#myform").dform({
+                "html": [{
+                    // Other attributes
+                    "name": "username",
+                    "id": "txt-username",
+                    "caption": "username",
+
+                    // Type Classifier
+                    "type": "text",
+                    "placeholder":
+                        "E.g. user@example.com"
+                },
+                { "type": "br" }
+                ]
+            });
+        }
+    };
+
+
+
+
+
+
+</script>
+
+
+
+<style>
+    .pagination>li {
+        border: 1px solid #d3d3d3 !important;
+
+
+    }
+
+    .dt-buttons {
+        margin-bottom: 12px;
+    }
+
+
+    button.dt-button,
+    div.dt-button,
+    a.dt-button {
+        color: #241159;
+    }
+
+
+    button.buttons-collection>span.dt-down-arrow {
+        display: none;
+    }
+
+    .pagination>li>a {
+         !important color: black
+    }
+
+    select.form-control {
+        -webkit-appearance: menulist;
+    }
+
+    table.dataTable thead tr {
+        color: #241159;
+    }
+
+    div.dt-button-collection button.dt-button {
+        width: 100%;
+
+    }
+
+    #form label {
+        color: #241159;
+    }
+
+    .input-group-text {
+        background: #241159;
+        color: white;
+    }
+
+    .btn-outline-primary {
+        color: #241159;
+        border-color: #241159;
+    }
+
+    .btn-outline-primary:hover {
+        color: #241159;
+        border-color: #241159;
+        background-color: transparent;
+    }
+</style>
