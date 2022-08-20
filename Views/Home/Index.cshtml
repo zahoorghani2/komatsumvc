@@ -3,7 +3,10 @@
 
 
 <div class="homePage">
+    <div>
 
+        <h2><span><i class=""></i></span> Price Review Inquiry</h2>
+    </div>
     <div id="SearchForm" class="mb-4 border bg-gray">
         <div class="searchResults p-2 mb-3" style="background:#241159; color: white; font-weight: bold">
             <div class="d-flex justify-content-between">
@@ -198,7 +201,7 @@
         $('#example').DataTable().clear().destroy();
         var table = $("#example").DataTable({
             pagingType: 'full_numbers',
-
+            responsive: true,
             "bInfo": false,
             "ajax": {
                 "url": "/Customer/GetList",
@@ -325,6 +328,11 @@
 
     table.dataTable thead tr {
         color: #241159;
+    }
+
+    h2 {
+        color: #241159;
+
     }
 
     div.dt-button-collection button.dt-button {
